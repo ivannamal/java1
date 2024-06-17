@@ -1,3 +1,6 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,23 +50,43 @@ class IncorrectClass {
 }
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        BufferedWriter file = new BufferedWriter(new FileWriter("results.txt", true));
+        file.write("\n"+"Maps:" + "\n");
+
         Map<CorrectClass, String> correctMap = new HashMap<>();
-        CorrectClass correct1 = new CorrectClass(1, "Alice");
-        CorrectClass correct2 = new CorrectClass(2, "Bob");
-        correctMap.put(correct1, "Correct Alice");
-        correctMap.put(correct2, "Correct Bob");
+        CorrectClass correct1 = new CorrectClass(1, "name1");
+        CorrectClass correct2 = new CorrectClass(2, "name2");
+        correctMap.put(correct1, "Correct name1");
+        correctMap.put(correct2, "Correct name2");
 
-        System.out.println("CorrectClass Map:");
+        System.out.println("\nCorrectClass Map:" +"\n");
+        file.write("\nCorrectClass Map:" + "\n");
         correctMap.forEach((key, value) -> System.out.println(key.hashCode() + ": " + value));
+        correctMap.forEach((key, value) -> {
+            try {
+                file.write(key.hashCode() + ": " + value +"\n");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
-        Map<IncorrectClass, String> incorrectMap = new HashMap<>();
-        IncorrectClass incorrect1 = new IncorrectClass(1, "Alice");
-        IncorrectClass incorrect2 = new IncorrectClass(2, "Bob");
-        incorrectMap.put(incorrect1, "Incorrect Alice");
-        incorrectMap.put(incorrect2, "Incorrect Bob");
+                Map<IncorrectClass, String> incorrectMap = new HashMap<>();
+        IncorrectClass incorrect1 = new IncorrectClass(1, "name1");
+        IncorrectClass incorrect2 = new IncorrectClass(2, "name2");
+        incorrectMap.put(incorrect1, "Incorrect name1");
+        incorrectMap.put(incorrect2, "Incorrect name2");
 
-        System.out.println("\nIncorrectClass Map:");
+        System.out.println("\nIncorrectClass Map:" +"\n");
+        file.write("\nIncorrectClass Map:" + "\n");
         incorrectMap.forEach((key, value) -> System.out.println(key.hashCode() + ": " + value));
+        incorrectMap.forEach((key, value) -> {
+            try {
+                file.write(key.hashCode() + ": " + value +"\n");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        file.close();
     }
 }

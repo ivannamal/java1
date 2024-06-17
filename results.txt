@@ -1,0 +1,17 @@
+MessageDigest:
+MD5: [B@26a1ab54
+SHA-1: [B@26a1ab54
+SHA-256: [B@26a1ab54
+SecureRandom:
+SHA1PRNG: YdqGdXd8yn+t/0JklT+phA==
+PKCS11: GL4YQOtPP+TEZ2iPdqIiRA==
+Windows-PRNG: 6rpXiiaxTeHjFaMnKp+eTQ==
+
+Maps:
+
+CorrectClass Map:
+104584997: Correct name1
+104585029: Correct name2
+
+IncorrectClass Map:
+1: Incorrect name2
